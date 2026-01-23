@@ -20,7 +20,7 @@ target_link_libraries(learning-vcpkg-example
 set_target_properties(learning-vcpkg-example PROPERTIES EXPORT_NAME example)
 set_target_properties(learning-vcpkg-example PROPERTIES OUTPUT_NAME "${PROJECT_NAME}-example")
 
-set(targets_export_name "${PROJECT_NAME}-example-targets")
+set(targets_export_name "${PROJECT_NAME}-targets-example")
 
 install(TARGETS learning-vcpkg-example
         COMPONENT "${PROJECT_NAME}"

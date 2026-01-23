@@ -1,0 +1,61 @@
+name: "CI / CD"
+
+on:
+  push:
+    branches: [ "main", "feature/*", "bugfix/*" ]
+
+  pull_request:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+
+jobs:
+  strings:
+    runs-on: ubuntu-latest
+    outputs:
+      build-dir: ${{ steps.strings.outputs.build-dir }}
+      build-version: ${{ steps.strings.outputs.build-version }}
+      install-dir: ${{ steps.strings.outputs.install-dir }}
+    steps:
+      - name: Set reusable strings
+        id: strings
+        shell: bash
+        run: |
+          echo "build-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
+          echo "install-dir=${{ github.workspace }}/build/install" >> "$GITHUB_OUTPUT"
+          COMMIT_HASH=${{ github.sha }}
+          VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
+          [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
+          [ "$VERSION" == "${{ github.event.repository.default_branch }}" ] && VERSION=latest
+          VERSION="$VERSION+sha.${COMMIT_HASH:0:8}"
+          echo VERSION=$VERSION
+          echo "build-version=${VERSION}" >> "$GITHUB_OUTPUT"
+
+  debug:
+    needs: [ strings ]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: lukka/get-cmake@latest
+
+      - uses: lukka/run-vcpkg@v11.5
+
+      - name: Configure CMake
+        run: cmake --preset debug
+
+      - name: Build
+        run: cmake --build --preset all
+
+      - name: Test
+        run: ctest --preset debug
+
+      - name: Package
+        run: cpack --preset debug -R "${{ needs.strings.outputs.build-version }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: learning-vcpkg-${{ needs.strings.outputs.build-version }}
+          path: ${{ needs.strings.outputs.build-dir }}/debug/learning-vcpkg-*
+          if-no-files-found: error

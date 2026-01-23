@@ -18,7 +18,7 @@ add_test(NAME "${PROJECT_NAME}.can-start" COMMAND learning-vcpkg-hello-world)
 set_target_properties(learning-vcpkg-hello-world PROPERTIES EXPORT_NAME hello-world)
 set_target_properties(learning-vcpkg-hello-world PROPERTIES OUTPUT_NAME "${PROJECT_NAME}-hello-world")
 
-set(targets_export_name "${PROJECT_NAME}-hello-world-targets")
+set(targets_export_name "${PROJECT_NAME}-targets-hello-world")
 
 install(
         TARGETS learning-vcpkg-hello-world
