@@ -1,0 +1,72 @@
+{
+  "version": 6,
+  "include": [
+    "cmake/CMakePresets.base.json"
+  ],
+  "configurePresets": [
+    {
+      "name": "debug",
+      "inherits": [
+        "vcpkg",
+        "default"
+      ]
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "all",
+      "inherits": "default",
+      "configurePreset": "debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "install",
+      "inherits": "all"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "debug",
+      "inherits": "default",
+      "configurePreset": "debug",
+      "configuration": "Debug"
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "debug",
+      "inherits": "default",
+      "configurePreset": "debug",
+      "configurations": [
+        "Debug"
+      ]
+    }
+  ],
+  "workflowPresets": [
+    {
+      "name": "debug",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "debug"
+        },
+        {
+          "type": "build",
+          "name": "all"
+        },
+        {
+          "type": "test",
+          "name": "debug"
+        },
+        {
+          "type": "package",
+          "name": "debug"
+        },
+        {
+          "type": "build",
+          "name": "install"
+        }
+      ]
+    }
+  ]
+}

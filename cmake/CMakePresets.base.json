@@ -1,0 +1,61 @@
+{
+  "version": 6,
+  "configurePresets": [
+    {
+      "name": "default",
+      "generator": "Ninja Multi-Config",
+      "binaryDir": "build/${presetName}",
+      "installDir": "build/install/${presetName}",
+      "cacheVariables": {
+        "CMAKE_PREFIX_PATH": "${sourceDir}/build/install",
+        "CPACK_PACKAGE_NAME": "${presetName}",
+        "CPACK_INSTALL_CMAKE_PROJECTS": "${sourceDir}/build/${presetName};${presetName};${presetName};/"
+      }
+    },
+    {
+      "name": "vcpkg",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "configuration": "Release",
+      "targets": [
+        "${presetName}"
+      ]
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "configuration": "Release",
+      "output": {
+        "outputOnFailure": true,
+        "subprojectSummary": true
+      },
+      "execution": {
+        "noTestsAction": "error",
+        "stopOnFailure": false
+      }
+    }
+  ],
+  "packagePresets": [
+    {
+      "name": "default",
+      "hidden": true,
+      "configurations": [
+        "Release"
+      ],
+      "generators": [
+        "TGZ",
+        "STGZ"
+      ]
+    }
+  ]
+}
