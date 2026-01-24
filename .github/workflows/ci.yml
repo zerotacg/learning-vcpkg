@@ -34,7 +34,11 @@ jobs:
 
   debug:
     needs: [ strings ]
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-22.04, ubuntu-latest, windows-latest ]
     steps:
       - uses: actions/checkout@v5
 
@@ -56,6 +60,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: learning-vcpkg-${{ needs.strings.outputs.build-version }}
+          name: learning-vcpkg-${{ matrix.os }}-${{ needs.strings.outputs.build-version }}
           path: ${{ needs.strings.outputs.build-dir }}/debug/learning-vcpkg-*
           if-no-files-found: error
