@@ -49,6 +49,10 @@ jobs:
       - name: Configure CMake
         run: cmake --preset ci
 
+      - name: debug
+        shell: bash
+        run: find build
+
       - name: Build
         run: cmake --build --preset all
 
