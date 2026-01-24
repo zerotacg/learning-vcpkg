@@ -53,10 +53,6 @@
       "hidden": true,
       "configurations": [
         "Release"
-      ],
-      "generators": [
-        "TGZ",
-        "STGZ"
       ]
     }
   ]
