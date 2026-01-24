@@ -16,14 +16,12 @@ jobs:
     outputs:
       build-dir: ${{ steps.strings.outputs.build-dir }}
       build-version: ${{ steps.strings.outputs.build-version }}
-      install-dir: ${{ steps.strings.outputs.install-dir }}
     steps:
       - name: Set reusable strings
         id: strings
         shell: bash
         run: |
           echo "build-dir=build" >> "$GITHUB_OUTPUT"
-          echo "install-dir=${{ github.workspace }}/build/install" >> "$GITHUB_OUTPUT"
           COMMIT_HASH=${{ github.sha }}
           VERSION=$(echo "${{ github.ref }}" | sed -e 's,.*/\(.*\),\1,')
           [[ "${{ github.ref }}" == "refs/tags/"* ]] && VERSION=$(echo $VERSION | sed -e 's/^v//')
