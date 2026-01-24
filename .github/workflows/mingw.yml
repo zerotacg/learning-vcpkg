@@ -3,9 +3,15 @@ name: "CI / CD: mingw"
 on:
   push:
     branches: [ "main", "feature/*", "bugfix/*" ]
+    paths-ignore:
+      - '.github/**.yml'
+      - '!.github/workflows/mingw.yml'
 
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - '.github/**.yml'
+      - '!.github/workflows/mingw.yml'
 
   workflow_dispatch:
 

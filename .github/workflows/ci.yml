@@ -3,9 +3,15 @@ name: "CI / CD"
 on:
   push:
     branches: [ "main", "feature/*", "bugfix/*" ]
+    paths-ignore:
+      - '.github/**.yml'
+      - '!.github/workflows/ci.yml'
 
   pull_request:
     branches: [ "main" ]
+    paths-ignore:
+      - '.github/**.yml'
+      - '!.github/workflows/ci.yml'
 
   workflow_dispatch:
 
