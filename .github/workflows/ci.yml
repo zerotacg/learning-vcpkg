@@ -38,6 +38,11 @@ jobs:
       matrix:
         os: [ ubuntu-22.04, ubuntu-latest, windows-latest, macos-latest ]
     steps:
+      - name: Dependencies Windows
+        if: runner.os == 'Windows'
+        run: |
+          choco install nsis
+
       - uses: actions/checkout@v5
 
       - uses: lukka/get-cmake@latest
