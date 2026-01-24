@@ -32,19 +32,53 @@ jobs:
           echo VERSION=$VERSION
           echo "build-version=${VERSION}" >> "$GITHUB_OUTPUT"
 
-  debug:
+  linux:
     needs: [ strings ]
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-22.04, ubuntu-latest, windows-latest ]
+        os: [ ubuntu-22.04, ubuntu-latest ]
     steps:
       - uses: actions/checkout@v5
 
       - uses: lukka/get-cmake@latest
 
       - uses: lukka/run-vcpkg@v11.5
+
+      - name: Configure CMake
+        run: cmake --preset debug
+
+      - name: Build
+        run: cmake --build --preset all
+
+      - name: Test
+        run: ctest --preset debug
+
+      - name: Package
+        run: cpack --preset debug -R "${{ needs.strings.outputs.build-version }}"
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: learning-vcpkg-${{ matrix.os }}-${{ needs.strings.outputs.build-version }}
+          path: ${{ needs.strings.outputs.build-dir }}/debug/learning-vcpkg-*
+          if-no-files-found: error
+
+  windows:
+    needs: [ strings ]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ windows-latest ]
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: lukka/get-cmake@latest
+
+      - uses: lukka/run-vcpkg@v11.5
+        env:
+          VCPKG_DEFAULT_TRIPLET: x64-windows-static
 
       - name: Configure CMake
         run: cmake --preset debug
