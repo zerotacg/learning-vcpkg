@@ -34,7 +34,10 @@
       "name": "mingw",
       "inherits": "default",
       "configurePreset": "mingw",
-      "configuration": "Debug"
+      "configuration": "Debug",
+      "targets": [
+        "all"
+      ]
     }
   ],
   "testPresets": [
