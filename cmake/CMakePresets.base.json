@@ -1,14 +1,18 @@
 {
-  "version": 6,
+  "version": 10,
   "configurePresets": [
     {
       "name": "default",
-      "generator": "Ninja Multi-Config",
       "binaryDir": "build/${presetName}",
       "installDir": "build/install/${presetName}",
       "cacheVariables": {
         "CMAKE_PREFIX_PATH": "${sourceDir}/build/install"
       }
+    },
+    {
+      "name": "ninja",
+      "hidden": true,
+      "generator": "Ninja Multi-Config"
     },
     {
       "name": "vcpkg",

@@ -1,0 +1,13 @@
+{
+  "version": 10,
+  "configurePresets": [
+    {
+      "name": "debug",
+      "inherits": [
+        "ninja",
+        "vcpkg",
+        "default"
+      ]
+    }
+  ]
+}

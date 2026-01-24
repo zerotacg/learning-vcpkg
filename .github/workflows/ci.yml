@@ -32,7 +32,7 @@ jobs:
           echo VERSION=$VERSION
           echo "build-version=${VERSION}" >> "$GITHUB_OUTPUT"
 
-  debug:
+  build-test-package:
     needs: [ strings ]
     runs-on: ${{ matrix.os }}
     strategy:
@@ -47,19 +47,19 @@ jobs:
       - uses: lukka/run-vcpkg@v11.5
 
       - name: Configure CMake
-        run: cmake --preset debug
+        run: cmake --preset ci
 
       - name: Build
         run: cmake --build --preset all
 
       - name: Test
-        run: ctest --preset debug
+        run: ctest --preset ci
 
       - name: Package
-        run: cpack --preset debug -R "${{ needs.strings.outputs.build-version }}"
+        run: cpack --preset ci -R "${{ needs.strings.outputs.build-version }}"
 
       - uses: actions/upload-artifact@v4
         with:
           name: learning-vcpkg-${{ matrix.os }}-${{ needs.strings.outputs.build-version }}
-          path: ${{ needs.strings.outputs.build-dir }}/debug/learning-vcpkg-*
+          path: ${{ needs.strings.outputs.build-dir }}/ci/learning-vcpkg-*
           if-no-files-found: error

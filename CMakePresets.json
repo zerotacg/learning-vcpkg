@@ -1,11 +1,11 @@
 {
-  "version": 6,
+  "version": 10,
   "include": [
     "cmake/CMakePresets.base.json"
   ],
   "configurePresets": [
     {
-      "name": "debug",
+      "name": "ci",
       "inherits": [
         "vcpkg",
         "default"
@@ -16,7 +16,7 @@
     {
       "name": "all",
       "inherits": "default",
-      "configurePreset": "debug",
+      "configurePreset": "ci",
       "configuration": "Debug"
     },
     {
@@ -26,17 +26,17 @@
   ],
   "testPresets": [
     {
-      "name": "debug",
+      "name": "ci",
       "inherits": "default",
-      "configurePreset": "debug",
+      "configurePreset": "ci",
       "configuration": "Debug"
     }
   ],
   "packagePresets": [
     {
-      "name": "debug",
+      "name": "ci",
       "inherits": "default",
-      "configurePreset": "debug",
+      "configurePreset": "ci",
       "configurations": [
         "Debug"
       ]
@@ -44,11 +44,11 @@
   ],
   "workflowPresets": [
     {
-      "name": "debug",
+      "name": "ci",
       "steps": [
         {
           "type": "configure",
-          "name": "debug"
+          "name": "ci"
         },
         {
           "type": "build",
@@ -56,11 +56,11 @@
         },
         {
           "type": "test",
-          "name": "debug"
+          "name": "ci"
         },
         {
           "type": "package",
-          "name": "debug"
+          "name": "ci"
         },
         {
           "type": "build",
