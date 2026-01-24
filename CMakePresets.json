@@ -10,6 +10,13 @@
         "vcpkg",
         "default"
       ]
+    },
+    {
+      "name": "mingw",
+      "inherits": [
+        "mingw-x64",
+        "default"
+      ]
     }
   ],
   "buildPresets": [
@@ -22,6 +29,12 @@
     {
       "name": "install",
       "inherits": "all"
+    },
+    {
+      "name": "mingw",
+      "inherits": "default",
+      "configurePreset": "mingw",
+      "configuration": "Debug"
     }
   ],
   "testPresets": [
@@ -30,6 +43,12 @@
       "inherits": "default",
       "configurePreset": "ci",
       "configuration": "Debug"
+    },
+    {
+      "name": "mingw",
+      "inherits": "default",
+      "configurePreset": "mingw",
+      "configuration": "Debug"
     }
   ],
   "packagePresets": [
@@ -37,6 +56,14 @@
       "name": "ci",
       "inherits": "default",
       "configurePreset": "ci",
+      "configurations": [
+        "Debug"
+      ]
+    },
+    {
+      "name": "mingw",
+      "inherits": "default",
+      "configurePreset": "mingw",
       "configurations": [
         "Debug"
       ]

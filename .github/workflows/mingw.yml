@@ -1,4 +1,4 @@
-name: "CI / CD"
+name: "CI / CD: mingw"
 
 on:
   push:
@@ -32,16 +32,14 @@ jobs:
 
   build-test-package:
     needs: [ strings ]
-    runs-on: ${{ matrix.os }}
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [ ubuntu-22.04, ubuntu-latest, windows-latest, macos-latest ]
+    runs-on: ubuntu-latest
     steps:
-      - name: Dependencies Windows
-        if: runner.os == 'Windows'
+      - name: Dependencies
         run: |
-          choco install nsis
+          sudo apt update
+          sudo apt install --yes \
+            mingw-w64 \
+            mingw-w64-tools
 
       - uses: actions/checkout@v5
 
@@ -50,19 +48,19 @@ jobs:
       - uses: lukka/run-vcpkg@v11.5
 
       - name: Configure CMake
-        run: cmake --preset ci
+        run: cmake --preset mingw
 
       - name: Build
-        run: cmake --build ${{ needs.strings.outputs.build-dir }}/ci --config Debug
+        run: cmake --build --preset mingw
 
       - name: Test
-        run: ctest --preset ci
+        run: ctest --preset mingw
 
       - name: Package
-        run: cpack --preset ci -R "${{ needs.strings.outputs.build-version }}"
+        run: cpack --preset mingw -R "${{ needs.strings.outputs.build-version }}"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: learning-vcpkg-${{ matrix.os }}-${{ needs.strings.outputs.build-version }}
-          path: ${{ needs.strings.outputs.build-dir }}/ci/learning-vcpkg-*
+          name: learning-vcpkg-mingw-${{ needs.strings.outputs.build-version }}
+          path: ${{ needs.strings.outputs.build-dir }}/mingw/learning-vcpkg-*
           if-no-files-found: error
