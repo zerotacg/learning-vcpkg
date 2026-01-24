@@ -50,9 +50,7 @@ jobs:
         run: cmake --preset ci
 
       - name: Build
-        run: |
-          find build
-          cmake --build --preset all
+        run: cmake --build --preset all
 
       - name: Test
         run: ctest --preset ci
