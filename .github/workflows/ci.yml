@@ -52,11 +52,6 @@ jobs:
         run: find build
 
       - name: Build
-        if: runner.os != 'Windows'
-        run: cmake --build --preset all
-
-      - name: Build
-        if: runner.os == 'Windows'
         run: cmake --build ${{ needs.strings.outputs.build-dir }}/ci --config Debug
 
       - name: Test

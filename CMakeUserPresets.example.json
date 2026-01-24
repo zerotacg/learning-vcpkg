@@ -7,7 +7,11 @@
         "ninja",
         "vcpkg",
         "default"
-      ]
+      ],
+      "environment": {
+        "VCPKG_ROOT": "$env{HOME}/.local/opt/vcpkg",
+        "PATH": "$env{HOME}/ninja/bin:$penv{PATH}"
+      }
     }
   ]
 }
