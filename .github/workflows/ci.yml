@@ -57,7 +57,7 @@ jobs:
 
       - name: Build
         if: runner.os == 'Windows'
-        run: cmake --build ${{ needs.strings.outputs.build-dir } --config Debug
+        run: cmake --build ${{ needs.strings.outputs.build-dir }} --config Debug
 
       - name: Test
         run: ctest --preset ci
