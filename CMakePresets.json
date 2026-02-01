@@ -117,6 +117,12 @@
       "inherits": "default",
       "configurePreset": "ci",
       "configuration": "Debug"
+    },
+    {
+      "name": "mingw-x64",
+      "inherits": "default",
+      "configurePreset": "mingw-x64",
+      "configuration": "Debug"
     }
   ],
   "packagePresets": [
@@ -175,6 +181,32 @@
         {
           "type": "build",
           "name": "install"
+        }
+      ]
+    },
+    {
+      "name": "ci-mingw-x64",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "mingw-x64"
+        },
+        {
+          "type": "build",
+          "name": "mingw-x64"
+        }
+      ]
+    },
+    {
+      "name": "ci-mingw-x86",
+      "steps": [
+        {
+          "type": "configure",
+          "name": "mingw-x86"
+        },
+        {
+          "type": "build",
+          "name": "mingw-x86"
         }
       ]
     }
