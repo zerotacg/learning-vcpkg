@@ -14,14 +14,14 @@
     {
       "name": "mingw-x64",
       "inherits": [
-        "mingw-x64",
+        "mingw-x64-static",
         "default"
       ]
     },
     {
       "name": "mingw-x86",
       "inherits": [
-        "mingw-x86",
+        "mingw-x86-static",
         "default"
       ]
     }

@@ -22,14 +22,14 @@
       }
     },
     {
-      "name": "mingw-x64",
+      "name": "mingw-x64-static",
       "hidden": true,
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x64.cmake"
       }
     },
     {
-      "name": "mingw-x86",
+      "name": "mingw-x86-static",
       "hidden": true,
       "cacheVariables": {
         "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x86.cmake"
