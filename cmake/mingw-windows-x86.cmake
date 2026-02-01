@@ -18,5 +18,5 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 #vcpkg
 set(MINGW TRUE)
-set(VCPKG_TARGET_TRIPLET x64-mingw-static)
+set(VCPKG_TARGET_TRIPLET x86-mingw-static)
 include("$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")

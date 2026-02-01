@@ -36,9 +36,13 @@ jobs:
           echo VERSION=$VERSION
           echo "build-version=${VERSION}" >> "$GITHUB_OUTPUT"
 
-  build-test-package:
+  build-package:
     needs: [ strings ]
     runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        preset: [ mingw-x64, mingw-x86 ]
     steps:
       - name: Dependencies
         run: |
@@ -55,16 +59,16 @@ jobs:
       - uses: lukka/run-vcpkg@v11.5
 
       - name: Configure CMake
-        run: cmake --preset mingw
+        run: cmake --preset ${{ matrix.preset }}
 
       - name: Build
-        run: cmake --build --preset mingw
+        run: cmake --build --preset ${{ matrix.preset }}
 
       - name: Package
-        run: cpack --preset mingw -R "${{ needs.strings.outputs.build-version }}"
+        run: cpack --preset ${{ matrix.preset }} -R "${{ needs.strings.outputs.build-version }}"
 
       - uses: actions/upload-artifact@v4
         with:
-          name: learning-vcpkg-mingw-${{ needs.strings.outputs.build-version }}
-          path: ${{ needs.strings.outputs.build-dir }}/mingw/learning-vcpkg-*
+          name: learning-vcpkg-${{ matrix.preset }}-${{ needs.strings.outputs.build-version }}
+          path: ${{ needs.strings.outputs.build-dir }}/${{ matrix.preset }}/learning-vcpkg-*
           if-no-files-found: error

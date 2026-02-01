@@ -12,9 +12,16 @@
       ]
     },
     {
-      "name": "mingw",
+      "name": "mingw-x64",
       "inherits": [
         "mingw-x64",
+        "default"
+      ]
+    },
+    {
+      "name": "mingw-x86",
+      "inherits": [
+        "mingw-x86",
         "default"
       ]
     }
@@ -31,9 +38,18 @@
       "inherits": "all"
     },
     {
-      "name": "mingw",
+      "name": "mingw-x64",
       "inherits": "default",
-      "configurePreset": "mingw",
+      "configurePreset": "mingw-x64",
+      "configuration": "Debug",
+      "targets": [
+        "all"
+      ]
+    },
+    {
+      "name": "mingw-x86",
+      "inherits": "default",
+      "configurePreset": "mingw-x86",
       "configuration": "Debug",
       "targets": [
         "all"
@@ -45,12 +61,6 @@
       "name": "ci",
       "inherits": "default",
       "configurePreset": "ci",
-      "configuration": "Debug"
-    },
-    {
-      "name": "mingw",
-      "inherits": "default",
-      "configurePreset": "mingw",
       "configuration": "Debug"
     }
   ],
@@ -64,9 +74,17 @@
       ]
     },
     {
-      "name": "mingw",
+      "name": "mingw-x64",
       "inherits": "default",
-      "configurePreset": "mingw",
+      "configurePreset": "mingw-x64",
+      "configurations": [
+        "Debug"
+      ]
+    },
+    {
+      "name": "mingw-x86",
+      "inherits": "default",
+      "configurePreset": "mingw-x86",
       "configurations": [
         "Debug"
       ]
