@@ -2,18 +2,16 @@ add_library(learning-vcpkg-example)
 add_library(${PROJECT_NAME}::example ALIAS learning-vcpkg-example)
 
 target_sources(learning-vcpkg-example
-        PRIVATE
-        learning-vcpkg/example/example.cpp
-)
-target_sources(learning-vcpkg-example
         PUBLIC
         FILE_SET HEADERS
         FILES
         learning-vcpkg/example/example.hpp
+        PRIVATE
+        learning-vcpkg/example/example.cpp
 )
 
 target_link_libraries(learning-vcpkg-example
-        PUBLIC fmt::fmt
+        PRIVATE fmt::fmt
 )
 
 
