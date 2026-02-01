@@ -26,14 +26,16 @@
       "name": "mingw-x64-static",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x64.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x64.cmake",
+        "BUILD_SHARED_LIBS": false
       }
     },
     {
       "name": "mingw-x86-static",
       "hidden": true,
       "cacheVariables": {
-        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x86.cmake"
+        "CMAKE_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x86.cmake",
+        "BUILD_SHARED_LIBS": false
       }
     },
     {
@@ -48,20 +50,14 @@
       "inherits": [
         "mingw-x64-static",
         "default"
-      ],
-      "cacheVariables": {
-        "BUILD_SHARED_LIBS": false
-      }
+      ]
     },
     {
       "name": "mingw-x86",
       "inherits": [
         "mingw-x86-static",
         "default"
-      ],
-      "cacheVariables": {
-        "BUILD_SHARED_LIBS": false
-      }
+      ]
     }
   ],
   "buildPresets": [
