@@ -16,7 +16,9 @@ set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -static")
 
+# alternative to chaining the toolchain via VCPKG_CHAINLOAD_TOOLCHAIN_FILE
+# also see https://learn.microsoft.com/en-us/vcpkg/users/buildsystems/cmake-integration#using-multiple-toolchain-files
 #vcpkg
-set(MINGW TRUE)
-set(VCPKG_TARGET_TRIPLET x64-mingw-static)
-include("$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")
+#set(MINGW TRUE)
+#set(VCPKG_TARGET_TRIPLET x64-mingw-static)
+#include("$ENV{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake")

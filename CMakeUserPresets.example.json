@@ -12,6 +12,18 @@
         "VCPKG_ROOT": "$env{HOME}/.local/opt/vcpkg",
         "PATH": "$env{HOME}/ninja/bin:$penv{PATH}"
       }
+    },
+    {
+      "name": "mingw",
+      "inherits": [
+        "vcpkg",
+        "default"
+      ],
+      "cacheVariables": {
+        "MINGW": true,
+        "VCPKG_TARGET_TRIPLET": "x64-mingw-static",
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x64.cmake"
+      }
     }
   ]
 }
