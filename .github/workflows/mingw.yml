@@ -42,7 +42,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        preset: [ mingw-x64, mingw-x86 ]
+        preset: [ ci-mingw-x64, mingw-x86 ]
     steps:
       - name: Dependencies
         run: |
