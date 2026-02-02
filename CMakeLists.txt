@@ -18,6 +18,7 @@ set(project_config "${generated_dir}/${PROJECT_NAME}-config.cmake")
 set(package_components "")
 
 find_package(fmt 10.2.1 REQUIRED)
+find_package(ZLIB REQUIRED)
 
 add_subdirectory(app-hello-world)
 add_subdirectory(lib-example)

@@ -205,6 +205,10 @@
         {
           "type": "build",
           "name": "ci-mingw-x64"
+        },
+        {
+          "type": "test",
+          "name": "ci-mingw-x64"
         }
       ]
     },
