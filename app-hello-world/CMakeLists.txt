@@ -10,6 +10,7 @@ target_link_libraries(learning-vcpkg-hello-world
         PRIVATE
         learning-vcpkg::example
         fmt::fmt
+        OpenAL::OpenAL
 )
 
 add_test(NAME "${PROJECT_NAME}.can-start" COMMAND learning-vcpkg-hello-world)
