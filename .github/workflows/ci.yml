@@ -46,7 +46,7 @@ jobs:
         preset: [ ci ]
         include:
           - os: ubuntu-latest
-            preset: ci-x64-linux-static
+            preset: ci-x64-linux
           - os: ubuntu-latest
             preset: ci-x64-linux-dynamic
     steps:
@@ -65,7 +65,7 @@ jobs:
         run: cmake --preset ${{ matrix.preset }}
 
       - name: Build
-        run: cmake --build ${{ needs.strings.outputs.build-dir }}/ci --config Debug
+        run: cmake --build ${{ needs.strings.outputs.build-dir }}/${{ matrix.preset }} --config Debug
 
       - name: Test
         run: ctest --preset ci
