@@ -61,6 +61,28 @@
       ]
     },
     {
+      "name": "ci-x64-linux-dynamic",
+      "inherits": [
+        "vcpkg",
+        "default"
+      ],
+      "cacheVariables": {
+        "BUILD_SHARED_LIBS": true,
+        "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic"
+      }
+    },
+    {
+      "name": "ci-x64-linux-static",
+      "inherits": [
+        "vcpkg",
+        "default"
+      ],
+      "cacheVariables": {
+        "BUILD_SHARED_LIBS": false,
+        "VCPKG_TARGET_TRIPLET": "x64-linux-static"
+      }
+    },
+    {
       "name": "ci-mingw-x64",
       "inherits": [
         "ci"
