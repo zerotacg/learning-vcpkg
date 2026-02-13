@@ -73,18 +73,6 @@
       }
     },
     {
-      "name": "ci-x64-linux",
-      "inherits": [
-        "vcpkg",
-        "default"
-      ],
-      "binaryDir": "build/ci",
-      "cacheVariables": {
-        "BUILD_SHARED_LIBS": false,
-        "VCPKG_TARGET_TRIPLET": "x64-linux"
-      }
-    },
-    {
       "name": "ci-mingw-x64",
       "inherits": [
         "ci"

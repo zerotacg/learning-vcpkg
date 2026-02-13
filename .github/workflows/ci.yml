@@ -46,8 +46,6 @@ jobs:
         preset: [ ci ]
         include:
           - os: ubuntu-latest
-            preset: ci-x64-linux
-          - os: ubuntu-latest
             preset: ci-x64-linux-dynamic
     steps:
       - name: Dependencies Windows
@@ -75,6 +73,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: learning-vcpkg-${{ matrix.os }}-${{ needs.strings.outputs.build-version }}
+          name: learning-vcpkg-${{ matrix.os }}-${{ matrix.preset }}-${{ needs.strings.outputs.build-version }}
           path: ${{ needs.strings.outputs.build-dir }}/ci/learning-vcpkg-*
           if-no-files-found: error
