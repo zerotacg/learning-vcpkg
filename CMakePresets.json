@@ -66,6 +66,7 @@
         "vcpkg",
         "default"
       ],
+      "binaryDir": "build/ci",
       "cacheVariables": {
         "BUILD_SHARED_LIBS": true,
         "VCPKG_TARGET_TRIPLET": "x64-linux-dynamic"
@@ -77,6 +78,7 @@
         "vcpkg",
         "default"
       ],
+      "binaryDir": "build/ci",
       "cacheVariables": {
         "BUILD_SHARED_LIBS": false,
         "VCPKG_TARGET_TRIPLET": "x64-linux"
