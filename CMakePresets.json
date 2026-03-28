@@ -93,12 +93,12 @@
       ]
     },
     {
-      "name": "ci-mingw-x64",
+      "name": "ci-mingw-x64-static",
       "inherits": "ci/all",
       "configurePreset": "ci-mingw-x64-static"
     },
     {
-      "name": "ci-mingw-x86",
+      "name": "ci-mingw-x86-static",
       "inherits": "ci/all",
       "configurePreset": "ci-mingw-x86-static"
     }
@@ -118,7 +118,7 @@
       }
     },
     {
-      "name": "ci-mingw-x64",
+      "name": "ci-mingw-x64-static",
       "inherits": "ci",
       "configurePreset": "ci-mingw-x64-static"
     }
@@ -132,12 +132,12 @@
       ]
     },
     {
-      "name": "ci-mingw-x64",
+      "name": "ci-mingw-x64-static",
       "inherits": "ci",
       "configurePreset": "ci-mingw-x64-static"
     },
     {
-      "name": "ci-mingw-x86",
+      "name": "ci-mingw-x86-static",
       "inherits": "ci",
       "configurePreset": "ci-mingw-x86-static"
     }
@@ -177,11 +177,11 @@
         },
         {
           "type": "build",
-          "name": "ci-mingw-x64"
+          "name": "ci-mingw-x64-static"
         },
         {
           "type": "test",
-          "name": "ci-mingw-x64"
+          "name": "ci-mingw-x64-static"
         }
       ]
     },
@@ -194,7 +194,11 @@
         },
         {
           "type": "build",
-          "name": "ci-mingw-x86"
+          "name": "ci-mingw-x86-static"
+        },
+        {
+          "type": "package",
+          "name": "ci-mingw-x86-static"
         }
       ]
     }

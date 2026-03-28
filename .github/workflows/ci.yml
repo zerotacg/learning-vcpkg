@@ -84,7 +84,7 @@ jobs:
           key: ${{ steps.cache-vcpkg.outputs.cache-primary-key }}
 
       - name: Build
-        run: cmake --build ${{ needs.strings.outputs.build-dir }}/ci --config Debug
+        run: cmake --build --preset ci
 
       - name: Test
         run: ctest --preset ci
