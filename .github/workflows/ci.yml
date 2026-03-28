@@ -53,7 +53,7 @@ jobs:
         run: |
           choco install nsis
 
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - uses: lukka/get-cmake@latest
 
