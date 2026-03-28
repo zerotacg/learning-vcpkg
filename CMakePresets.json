@@ -78,47 +78,36 @@
   ],
   "buildPresets": [
     {
-      "name": "default",
-      "hidden": true,
-      "configuration": "Release",
+      "name": "ci/all",
+      "configurePreset": "ci",
+      "configuration": "Debug",
       "targets": [
-        "${presetName}"
+        "all"
       ]
     },
     {
-      "name": "all",
-      "inherits": "default",
-      "configurePreset": "ci",
-      "configuration": "Debug"
-    },
-    {
-      "name": "install",
-      "inherits": "all"
+      "name": "ci/install",
+      "inherits": "ci/all",
+      "targets": [
+        "install"
+      ]
     },
     {
       "name": "ci-mingw-x64",
-      "inherits": "default",
-      "configurePreset": "ci-mingw-x64",
-      "configuration": "Debug",
-      "targets": [
-        "all"
-      ]
+      "inherits": "ci/all",
+      "configurePreset": "ci-mingw-x64-static"
     },
     {
-      "name": "mingw-x86",
-      "inherits": "default",
-      "configurePreset": "mingw-x86",
-      "configuration": "Debug",
-      "targets": [
-        "all"
-      ]
+      "name": "ci-mingw-x86",
+      "inherits": "ci/all",
+      "configurePreset": "ci-mingw-x86-static"
     }
   ],
   "testPresets": [
     {
-      "name": "default",
-      "hidden": true,
-      "configuration": "Release",
+      "name": "ci",
+      "configurePreset": "ci",
+      "configuration": "Debug",
       "output": {
         "outputOnFailure": true,
         "subprojectSummary": true
@@ -129,29 +118,14 @@
       }
     },
     {
-      "name": "ci",
-      "inherits": "default",
-      "configurePreset": "ci",
-      "configuration": "Debug"
-    },
-    {
       "name": "ci-mingw-x64",
-      "inherits": "default",
-      "configurePreset": "ci-mingw-x64",
-      "configuration": "Debug"
+      "inherits": "ci",
+      "configurePreset": "ci-mingw-x64-static"
     }
   ],
   "packagePresets": [
     {
-      "name": "default",
-      "hidden": true,
-      "configurations": [
-        "Release"
-      ]
-    },
-    {
       "name": "ci",
-      "inherits": "default",
       "configurePreset": "ci",
       "configurations": [
         "Debug"
@@ -159,19 +133,13 @@
     },
     {
       "name": "ci-mingw-x64",
-      "inherits": "default",
-      "configurePreset": "ci-mingw-x64",
-      "configurations": [
-        "Debug"
-      ]
+      "inherits": "ci",
+      "configurePreset": "ci-mingw-x64-static"
     },
     {
-      "name": "mingw-x86",
-      "inherits": "default",
-      "configurePreset": "mingw-x86",
-      "configurations": [
-        "Debug"
-      ]
+      "name": "ci-mingw-x86",
+      "inherits": "ci",
+      "configurePreset": "ci-mingw-x86-static"
     }
   ],
   "workflowPresets": [
@@ -184,7 +152,7 @@
         },
         {
           "type": "build",
-          "name": "all"
+          "name": "ci/all"
         },
         {
           "type": "test",
@@ -196,7 +164,7 @@
         },
         {
           "type": "build",
-          "name": "install"
+          "name": "ci/install"
         }
       ]
     },
@@ -205,7 +173,7 @@
       "steps": [
         {
           "type": "configure",
-          "name": "ci-mingw-x64"
+          "name": "ci-mingw-x64-static"
         },
         {
           "type": "build",
@@ -222,11 +190,11 @@
       "steps": [
         {
           "type": "configure",
-          "name": "mingw-x86"
+          "name": "ci-mingw-x86-static"
         },
         {
           "type": "build",
-          "name": "mingw-x86"
+          "name": "ci-mingw-x86"
         }
       ]
     }

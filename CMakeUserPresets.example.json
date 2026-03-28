@@ -17,12 +17,10 @@
       "name": "mingw",
       "inherits": [
         "vcpkg",
+        "mingw-x64-static",
         "default"
       ],
       "cacheVariables": {
-        "MINGW": true,
-        "VCPKG_TARGET_TRIPLET": "x64-mingw-static",
-        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x64.cmake"
       }
     }
   ]
