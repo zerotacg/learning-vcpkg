@@ -10,6 +10,11 @@ target_sources(learning-vcpkg-example
         learning-vcpkg/example/example.cpp
 )
 
+target_precompile_headers(learning-vcpkg-hello-world
+        PUBLIC
+        learning-vcpkg/example/example.hpp
+)
+
 target_link_libraries(learning-vcpkg-example
         PRIVATE fmt::fmt
 )

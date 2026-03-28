@@ -40,20 +40,6 @@
       }
     },
     {
-      "name": "mingw-x64",
-      "inherits": [
-        "mingw-x64-static",
-        "default"
-      ]
-    },
-    {
-      "name": "mingw-x86",
-      "inherits": [
-        "mingw-x86-static",
-        "default"
-      ]
-    },
-    {
       "name": "ci",
       "inherits": [
         "vcpkg",
@@ -63,8 +49,7 @@
     {
       "name": "ci-x64-linux-dynamic",
       "inherits": [
-        "vcpkg",
-        "default"
+        "ci"
       ],
       "binaryDir": "build/ci",
       "cacheVariables": {
@@ -73,14 +58,21 @@
       }
     },
     {
-      "name": "ci-mingw-x64",
+      "name": "ci-mingw-x64-static",
       "inherits": [
-        "ci"
+        "ci",
+        "mingw-x64-static"
       ],
       "cacheVariables": {
-        "MINGW": true,
-        "VCPKG_TARGET_TRIPLET": "x64-mingw-static",
-        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/cmake/mingw-windows-x64.cmake"
+      }
+    },
+    {
+      "name": "ci-mingw-x86-static",
+      "inherits": [
+        "ci",
+        "mingw-x86-static"
+      ],
+      "cacheVariables": {
       }
     }
   ],
