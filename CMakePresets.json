@@ -78,7 +78,7 @@
   ],
   "buildPresets": [
     {
-      "name": "ci/all",
+      "name": "ci",
       "configurePreset": "ci",
       "configuration": "Debug",
       "targets": [
@@ -87,19 +87,19 @@
     },
     {
       "name": "ci/install",
-      "inherits": "ci/all",
+      "inherits": "ci",
       "targets": [
         "install"
       ]
     },
     {
       "name": "ci-mingw-x64-static",
-      "inherits": "ci/all",
+      "inherits": "ci",
       "configurePreset": "ci-mingw-x64-static"
     },
     {
       "name": "ci-mingw-x86-static",
-      "inherits": "ci/all",
+      "inherits": "ci",
       "configurePreset": "ci-mingw-x86-static"
     }
   ],
@@ -152,7 +152,7 @@
         },
         {
           "type": "build",
-          "name": "ci/all"
+          "name": "ci"
         },
         {
           "type": "test",
