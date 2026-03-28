@@ -50,6 +50,14 @@ jobs:
           - os: ubuntu-latest
             preset: ci-x64-linux-dynamic
     steps:
+      - name: Dependencies Linux
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt update
+          sudo apt install --yes \
+            autoconf \
+            libtool
+
       - name: Dependencies Windows
         if: runner.os == 'Windows'
         run: |
