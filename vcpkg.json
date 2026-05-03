@@ -3,6 +3,7 @@
   "dependencies": [
     "fmt",
     "openal-soft",
+    "qt5",
     "zlib"
   ]
 }
