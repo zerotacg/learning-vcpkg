@@ -69,7 +69,9 @@ jobs:
         id: cache-vcpkg
         with:
           path: ${{ github.workspace }}/.vcpkg
-          key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-configuration.json') }}
+          key: vcpkg-${{ matrix.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-configuration.json') }}
+          restore-keys: vcpkg-${{ matrix.os }}-
+
 
       - name: Configure CMake
         run: cmake --preset ${{ matrix.preset }}
