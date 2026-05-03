@@ -75,6 +75,7 @@ jobs:
         run: cmake --preset ${{ matrix.preset }}
 
       - uses: actions/cache/save@v5
+        if: ( ! cancelled() )
         with:
           path: ${{ github.workspace }}/.vcpkg
           key: ${{ steps.cache-vcpkg.outputs.cache-primary-key }}
