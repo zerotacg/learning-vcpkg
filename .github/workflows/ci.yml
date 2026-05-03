@@ -65,16 +65,16 @@ jobs:
         if: runner.os == 'Windows'
         run: >
           choco install
-            nsis
+          nsis
 
       - name: Dependencies ${{ runner.os }}
         if: runner.os == 'macOS'
         run: >
           brew install
-            autoconf
-            autoconf-archive
-            automake
-            libtool
+          autoconf
+          autoconf-archive
+          automake
+          libtool
 
       - uses: actions/checkout@v5
 
