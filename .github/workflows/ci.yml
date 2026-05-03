@@ -50,7 +50,7 @@ jobs:
           - os: ubuntu-latest
             preset: ci-x64-linux-dynamic
     steps:
-      - name: Dependencies Linux
+      - name: Dependencies ${{ runner.os }}
         if: runner.os == 'Linux'
         run: |
           sudo apt update
@@ -61,10 +61,20 @@ jobs:
             libtool \
             libltdl-dev
 
-      - name: Dependencies Windows
+      - name: Dependencies ${{ runner.os }}
         if: runner.os == 'Windows'
-        run: |
-          choco install nsis
+        run: >
+          choco install
+            nsis
+
+      - name: Dependencies ${{ runner.os }}
+        if: runner.os == 'macOS'
+        run: >
+          brew install
+            autoconf
+            autoconf-archive
+            automake
+            libtool
 
       - uses: actions/checkout@v5
 
@@ -76,7 +86,7 @@ jobs:
         id: cache-vcpkg
         with:
           path: ${{ github.workspace }}/.vcpkg
-          key: vcpkg-${{ runner.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-configuration.json') }}
+          key: vcpkg-${{ matrix.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-configuration.json') }}
 
       - name: Configure CMake
         run: cmake --preset ${{ matrix.preset }}
