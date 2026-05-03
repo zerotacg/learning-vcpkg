@@ -58,7 +58,8 @@ jobs:
             autoconf \
             autoconf-archive \
             automake \
-            libtool
+            libtool \
+            libltdl-dev
 
       - name: Dependencies Windows
         if: runner.os == 'Windows'
