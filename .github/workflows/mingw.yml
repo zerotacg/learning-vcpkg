@@ -60,6 +60,7 @@ jobs:
             libgl1-mesa-dev \
             libxrender-dev \
             libxi-dev \
+            libxtst-dev \
             libxkbcommon-dev \
             libxkbcommon-x11-dev \
             nsis \
