@@ -5,7 +5,7 @@
       "name": "default",
       "hidden": true,
       "binaryDir": "build/${presetName}",
-      "installDir": "build/install/${presetName}",
+      "installDir": "build/install",
       "cacheVariables": {
         "CMAKE_PREFIX_PATH": "${sourceDir}/build/install",
         "CMAKE_VERIFY_INTERFACE_HEADER_SETS": true
