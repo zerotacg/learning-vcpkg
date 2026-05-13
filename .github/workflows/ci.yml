@@ -112,3 +112,41 @@ jobs:
           name: learning-vcpkg-${{ matrix.os }}-${{ matrix.preset }}-${{ needs.strings.outputs.build-version }}
           path: ${{ needs.strings.outputs.build-dir }}/ci/learning-vcpkg-*
           if-no-files-found: error
+
+  test-comsume-component:
+    needs: [ strings ]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ ubuntu-latest ]
+        component: [ hello-world, example ]
+    steps:
+      - name: Dependencies ${{ runner.os }}
+        run: |
+          sudo apt update
+          sudo apt install --yes \
+            autoconf \
+            autoconf-archive \
+            automake \
+            libtool
+
+      - uses: actions/checkout@v6
+
+      - uses: lukka/get-cmake@latest
+
+      - uses: actions/download-artifact@v8
+        with:
+          pattern: learning-vcpkg-${{ matrix.os }}-ci-*
+          path: ${{ needs.strings.outputs.build-dir }}
+
+      - name: Install package
+        run: >
+          sh ${{ needs.strings.outputs.build-dir }}/learning-vcpkg-*.sh
+          --skip-license
+          --include-subdir
+          --prefix=${{ needs.strings.outputs.build-dir }}/install
+
+      - name: Configure CMake
+        working-directory: ${{ github.workspace }}/usage/consume-component-${{ matrix.component }}
+        run: cmake --workflow ci
