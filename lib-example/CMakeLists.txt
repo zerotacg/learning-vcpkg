@@ -16,7 +16,8 @@ target_precompile_headers(${PROJECT_NAME}-hello-world
 )
 
 target_link_libraries(${PROJECT_NAME}-example
-        PRIVATE fmt::fmt
+        PRIVATE
+        fmt::fmt
 )
 
 
