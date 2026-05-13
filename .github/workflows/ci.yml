@@ -82,7 +82,7 @@ jobs:
       - uses: lukka/run-vcpkg@v11.6
 
       - uses: actions/cache/restore@v5
-        id: cache-vcpkg
+        id: vcpkg-cache
         with:
           path: ${{ github.workspace }}/.vcpkg
           key: vcpkg-${{ matrix.os }}-${{ hashFiles('vcpkg.json', 'vcpkg-configuration.json') }}
@@ -93,10 +93,10 @@ jobs:
         run: cmake --preset ${{ matrix.preset }}
 
       - uses: actions/cache/save@v5
-        if: ( ! cancelled() )
+        if: ( ! cancelled() && steps.vcpkg-cache.outputs.cache-hit != 'true')
         with:
           path: ${{ github.workspace }}/.vcpkg
-          key: ${{ steps.cache-vcpkg.outputs.cache-primary-key }}
+          key: ${{ steps.vcpkg-cache.outputs.cache-primary-key }}
 
       - name: Build
         run: cmake --build ${{ needs.strings.outputs.build-dir }}/ci --config Debug
