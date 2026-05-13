@@ -139,7 +139,7 @@ jobs:
         with:
           pattern: learning-vcpkg-${{ matrix.os }}-ci-${{ needs.strings.outputs.build-version }}
           merge-multiple: true
-          path: ${{ needs.strings.outputs.build-dir }}
+          path: usage/consume-component-${{ matrix.component }}/${{ needs.strings.outputs.build-dir }}
 
       - name: Install package
         working-directory: ${{ github.workspace }}/usage/consume-component-${{ matrix.component }}
