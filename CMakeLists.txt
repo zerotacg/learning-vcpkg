@@ -11,14 +11,13 @@ include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
 set(project_namespace "${PROJECT_NAME}")
-set(config_install_dir "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}")
+set(config_install_dir "share/cmake/${PROJECT_NAME}")
 set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
 set(version_config "${generated_dir}/${PROJECT_NAME}-config-version.cmake")
 set(project_config "${generated_dir}/${PROJECT_NAME}-config.cmake")
 set(package_components "")
 
 find_package(fmt REQUIRED)
-find_package(OpenAL REQUIRED)
 find_package(ZLIB REQUIRED)
 
 add_subdirectory(app-hello-world)

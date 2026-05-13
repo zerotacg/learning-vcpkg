@@ -1,7 +1,7 @@
-add_library(learning-vcpkg-example)
-add_library(${PROJECT_NAME}::example ALIAS learning-vcpkg-example)
+add_library(${PROJECT_NAME}-example)
+add_library(${PROJECT_NAME}::example ALIAS ${PROJECT_NAME}-example)
 
-target_sources(learning-vcpkg-example
+target_sources(${PROJECT_NAME}-example
         PUBLIC
         FILE_SET HEADERS
         FILES
@@ -10,30 +10,33 @@ target_sources(learning-vcpkg-example
         learning-vcpkg/example/example.cpp
 )
 
-target_precompile_headers(learning-vcpkg-hello-world
+target_precompile_headers(${PROJECT_NAME}-hello-world
         PUBLIC
         learning-vcpkg/example/example.hpp
 )
 
-target_link_libraries(learning-vcpkg-example
+target_link_libraries(${PROJECT_NAME}-example
         PRIVATE fmt::fmt
 )
 
 
-set_target_properties(learning-vcpkg-example PROPERTIES EXPORT_NAME example)
-set_target_properties(learning-vcpkg-example PROPERTIES OUTPUT_NAME "${PROJECT_NAME}-example")
+set_target_properties(${PROJECT_NAME}-example
+        PROPERTIES
+            EXPORT_NAME example
+            OUTPUT_NAME "${PROJECT_NAME}-example"
+)
 
-set(targets_export_name "${PROJECT_NAME}-targets-example")
+set(targets_export_name "")
 
 install(TARGETS learning-vcpkg-example
         COMPONENT "${PROJECT_NAME}"
-        EXPORT "${targets_export_name}"
+        EXPORT "${PROJECT_NAME}-example-targets"
         FILE_SET HEADERS
 )
 
-install(EXPORT "${targets_export_name}"
+install(EXPORT "${PROJECT_NAME}-example-targets"
         COMPONENT "${PROJECT_NAME}"
-        NAMESPACE "${project_namespace}::"
+        NAMESPACE "${PROJECT_NAME}::"
         DESTINATION "${config_install_dir}"
 )
 
