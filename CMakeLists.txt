@@ -10,7 +10,6 @@ enable_testing()
 include(GNUInstallDirs)
 include(CMakePackageConfigHelpers)
 
-set(project_namespace "${PROJECT_NAME}")
 set(config_install_dir "share/cmake/${PROJECT_NAME}")
 set(generated_dir "${CMAKE_CURRENT_BINARY_DIR}/generated")
 set(version_config "${generated_dir}/${PROJECT_NAME}-config-version.cmake")
