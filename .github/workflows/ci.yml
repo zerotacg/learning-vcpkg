@@ -141,6 +141,7 @@ jobs:
           path: ${{ needs.strings.outputs.build-dir }}
 
       - name: Install package
+        working-directory: ${{ github.workspace }}/usage/consume-component-${{ matrix.component }}
         run: >
           sh ${{ needs.strings.outputs.build-dir }}/learning-vcpkg-*.sh
           --skip-license
