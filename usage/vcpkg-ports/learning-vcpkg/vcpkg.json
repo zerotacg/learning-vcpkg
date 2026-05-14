@@ -1,0 +1,22 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vcpkg-tool/main/docs/vcpkg.schema.json",
+  "name": "learning-vcpkg",
+  "version": "1.0.0",
+  "description": "example of using vcpkg with CMake",
+  "homepage": "https://github.com/zerotacg/learning-vcpkg",
+  "license": "MIT",
+  "dependencies": [
+    {
+      "name": "vcpkg-cmake",
+      "host": true
+    },
+    {
+      "name": "vcpkg-cmake-config",
+      "host": true
+    }
+  ],
+  "features": {
+    "hello-world": [ "fmt", "zlib" ],
+    "example": [ "fmt" ]
+  }
+}

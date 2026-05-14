@@ -44,7 +44,10 @@
       "inherits": [
         "vcpkg",
         "default"
-      ]
+      ],
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
     },
     {
       "name": "ci-x64-linux-dynamic",

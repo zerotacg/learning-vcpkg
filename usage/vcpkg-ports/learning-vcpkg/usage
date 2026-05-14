@@ -1,0 +1,5 @@
+provides CMake targets:
+
+find_package(learning-vcpkg REQUIRED hello-world example)
+
+target_link_libraries(main PRIVATE learning-vcpkg::example)

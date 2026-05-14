@@ -12,8 +12,16 @@
       }
     },
     {
+      "name": "vcpkg",
+      "hidden": true,
+      "cacheVariables": {
+        "CMAKE_TOOLCHAIN_FILE": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+      }
+    },
+    {
       "name": "ci",
       "inherits": [
+        "vcpkg",
         "default"
       ]
     }
