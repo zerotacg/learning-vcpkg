@@ -16,6 +16,7 @@ set(version_config "${generated_dir}/${PROJECT_NAME}-config-version.cmake")
 set(project_config "${generated_dir}/${PROJECT_NAME}-config.cmake")
 set(package_components "")
 set(component_hello-world_dependencies fmt ZLIB)
+set(component_hello-world_component_dependencies example)
 set(component_example_dependencies fmt)
 
 find_package(fmt 12.1 REQUIRED)
