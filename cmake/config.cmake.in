@@ -1,6 +1,8 @@
 @PACKAGE_INIT@
 
 set(_@PROJECT_NAME@_supported_components @package_components@)
+set(_@PROJECT_NAME@_hello-world_dependencies "@component_hello-world_dependencies@")
+set(_@PROJECT_NAME@_example_dependencies "@component_example_dependencies@")
 
 include(CMakeFindDependencyMacro)
 
@@ -10,13 +12,9 @@ foreach(_comp ${@PROJECT_NAME@_FIND_COMPONENTS})
         set(@PROJECT_NAME@_NOT_FOUND_MESSAGE "Unsupported component: ${_comp}")
     endif()
 
-    if(_comp EQUAL "hello-world")
-        find_dependency(ZLIB REQUIRED)
-        find_dependency(fmt 12.1 REQUIRED)
-    endif()
-    if(_comp EQUAL "example")
-        find_dependency(fmt 12.1 REQUIRED)
-    endif()
+    foreach(_dependency IN ITEMS ${_@PROJECT_NAME@_${_comp}_dependencies})
+        find_dependency(${_dependency})
+    endforeach()
 
     include("${CMAKE_CURRENT_LIST_DIR}/@PROJECT_NAME@-${_comp}-targets.cmake")
     set(@PROJECT_NAME@_${_comp}_FOUND True)
