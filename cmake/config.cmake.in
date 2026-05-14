@@ -8,14 +8,11 @@ set(_@PROJECT_NAME@_example_dependencies fmt)
 
 
 macro(find_component _comp)
-    MESSAGE(STATUS "Looking for component: ${_comp}")
     foreach(_dependency IN ITEMS ${_@PROJECT_NAME@_${_comp}_dependencies})
-        MESSAGE(STATUS "Looking for dependency: ${_dependency}")
         find_dependency(${_dependency})
     endforeach()
 
     foreach(_dependency IN ITEMS ${_@PROJECT_NAME@_${_comp}_component_dependencies})
-        MESSAGE(STATUS "Looking for component dependency: ${_dependency}")
         find_component(${_dependency})
     endforeach()
 
