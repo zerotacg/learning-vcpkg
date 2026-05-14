@@ -123,6 +123,7 @@ jobs:
       matrix:
         os: [ ubuntu-latest ]
         component: [ hello-world, example ]
+        preset: [ ci, ci-x64-linux-dynamic ]
     steps:
       - name: Dependencies ${{ runner.os }}
         run: |
@@ -143,7 +144,7 @@ jobs:
 
       - uses: actions/download-artifact@v8
         with:
-          pattern: learning-vcpkg-${{ matrix.os }}-ci-${{ needs.strings.outputs.build-version }}
+          pattern: learning-vcpkg-${{ matrix.os }}-${{ matrix.preset }}-${{ needs.strings.outputs.build-version }}
           merge-multiple: true
           path: usage/consume-component-${{ matrix.component }}/${{ needs.strings.outputs.build-dir }}
 
