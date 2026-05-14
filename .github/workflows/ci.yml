@@ -159,4 +159,6 @@ jobs:
 
       - name: Configure CMake
         working-directory: ${{ github.workspace }}/usage/consume-component-${{ matrix.component }}
-        run: cmake --workflow ci
+        run: |
+          export LD_LIBRARY_PATH=$(realpath ${{ needs.strings.outputs.build-dir }}/install/learning-vcpkg-*/lib):${LD_LIBRARY_PATH}
+          cmake --workflow ci
