@@ -75,7 +75,7 @@ jobs:
         with:
           vcpkgConfigurationJsonGlob: "vcpkg-configuration.json"
 
-      - uses: actions/cache/restore@v5
+      - uses: actions/cache/restore@v6
         id: cache-vcpkg
         with:
           path: ${{ github.workspace }}/.vcpkg
@@ -86,7 +86,7 @@ jobs:
       - name: Configure CMake
         run: cmake --preset ${{ matrix.preset }}
 
-      - uses: actions/cache/save@v5
+      - uses: actions/cache/save@v6
         if: ( ! cancelled() )
         with:
           path: ${{ github.workspace }}/.vcpkg
